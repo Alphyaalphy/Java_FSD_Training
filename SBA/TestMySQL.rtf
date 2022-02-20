@@ -1,0 +1,327 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 CREATE DATABASE project_movie_data;\par
+USE project_movie_data;\par
+\par
+create table Actor\par
+(act_id int not null,act_fname varchar(20),\par
+act_lname varchar(20),\par
+act_gender varchar(1),\par
+primary key(act_id));\par
+\par
+create table Director\par
+(dir_id int not null,dir_fname varchar(20),\par
+dir_lname varchar(20),\par
+primary key(dir_id));\par
+\par
+create table Movie\par
+(mov_id int not null,\par
+mov_title varchar(50),\par
+mov_year int not null,\par
+mov_time int not null,\par
+mov_lang varchar(50),\par
+mov_dt_rel date,\par
+mov_rel_country varchar(5),\par
+ primary key(mov_id));\par
+\par
+create table Reviewer\par
+(rev_id int not null,\par
+rev_name varchar(30),\par
+primary key(rev_id));\par
+\par
+create table Genres\par
+(gen_id int not null,\par
+gen_title varchar(20),\par
+primary key(gen_id));\par
+\par
+create table Movie_direction\par
+(dir_id int not null,mov_id int not null,\par
+foreign key(dir_id)references director(dir_id),\par
+foreign key(mov_id)references movie(mov_id));\par
+\par
+create table Movie_cast\par
+(act_id int not null,\par
+mov_id int not null,\par
+role varchar(30),\par
+foreign key(mov_id)references movie(mov_id),\par
+foreign key(act_id)references actor(act_id));\par
+\par
+create table Movie_genres\par
+(mov_id int not null,\par
+gen_id int not null,\par
+foreign key(mov_id)references movie(mov_id),\par
+foreign key(gen_id)references genres(gen_id));\par
+\par
+create table Rating\par
+(mov_id int not null,\par
+rev_id int not null,\par
+rev_stars int,\par
+num_o_ratings int,\par
+foreign key(mov_id)references movie(mov_id),\par
+primary key(rev_id));\par
+\par
+insert into Actor values\par
+(101,'James','Stewart','M'),\par
+(102,'Deborah','Kerr','F'),\par
+(103,'Peter','OToole','M'),\par
+(104,'Robert','De Niro','M'),\par
+(105,'F. Murray','Abraham','M'),\par
+(106,'Harrison','Ford','M'),\par
+(107,'Nicole','Kidman','F'),\par
+(108,'Stephen','Baldwin','M'),\par
+(109,'Jack','Nicholson','M'),\par
+(110,'Mark','Wahlberg','M'),\par
+(111,'Woody','Allen','M'),\par
+(112,'Claire','Danes','F'),\par
+(113,'Tim','Robbins','M'),\par
+(114,'Kevin','Spacey','M'),\par
+(115,'Kate','Winslet','F'),\par
+(116,'Robin','Williams','M'),\par
+(117,'Jon','Voight','M'),\par
+(118,'Ewan','McGregor','M'),\par
+(119,'Christian','Bale','M'),\par
+(120,'Maggie','Gyllenhaal','F'),\par
+(121,'Dev','Patel','M'),\par
+(122,'Sigourney','Weaver','F'),\par
+(123,'David','Aston','M'),\par
+(124,'Ali','Astin','F');\par
+\par
+insert into Director values\par
+(201,'Alfred','Hitchcock'),\par
+(202,'Jack','Clayton'),\par
+(203,'David','Lean'),\par
+(204,'Michael','Cimino'),\par
+(205,'Milos','Forman'),\par
+(206,'Ridley','Scott'),\par
+(207,'Stanley','Kubrick'),\par
+(208,'Bryan','Singer'),\par
+(209,'Roman','Polanski'),\par
+(210,'Paul','Thomas Anderson'),\par
+(211,'Woody','Allen'),\par
+(212,'Hayao','Miyazaki'),\par
+(213,'Frank','Darabont'),\par
+(214,'Sam','Mendes'),\par
+(215,'James','Cameron'),\par
+(216,'Gus','Van Sant'),\par
+(217,'Jon','Boorman'),\par
+(218,'Danny','Boyle'),\par
+(219,'Christopher','Nolan'),\par
+(220,'Richard','Kelly'),\par
+(221,'Kevin','Spacey'),\par
+(222,'Andrei','Tarkovsky'),\par
+(223,'Peter','Jackson');\par
+insert into genres values\par
+(1001,'Action'),\par
+(1002,'Adventure'),\par
+(1003,'Animation'),\par
+(1004,'Biography'),\par
+(1005,'Comedy'),\par
+(1006,'Crime'),\par
+(1007,'Drama'),\par
+(1008,'Horror'),\par
+(1009,'Music'),\par
+(1010,'Mystery'),\par
+(1011,'Romance'),\par
+(1012,'Thriller'),\par
+(1013,'War');\par
+\par
+insert into Movie values\par
+(901,'Vertigo',1958,128,'English','1958-08-24','UK'),\par
+(902,'The Innocents',1961,100,'English','1962-02-19','SW'),\par
+(903,'Lawrence of Arabia',1962,216,'English','1962-12-11','UK'),\par
+(904,'The Deer Hunter',1978,183,'English','1979-03-08','UK'),\par
+(905,'Amadeus',1984,160,'English','1985-01-07','UK'),\par
+(906,'Blade Runner',1982,117,'English','1982-09-09','UK'),\par
+(907,'Eyes Wide Shut',1999,159,'English',null,'UK'),\par
+(908,'The Usual suspects',1995,106,'English','1995-08-25','UK'),\par
+(909,'Chinatown',1974,130,'English','1974-08-09','UK'),\par
+(910,'Boogie Nights',1997,155,'English','1998-02-16','UK'),\par
+(911,'Annie Hall',1977,93,'English','1977-04-20','USA'),\par
+(912,'Princess Mononoke',1997,134,'Japanese','2001-10-19','UK'),\par
+(913,'The shawshank Redemption',1994,142,'English','1995-02-17','UK'),\par
+(914,'American Beauty',1999,122,'English',null,'UK'),\par
+(915,'Titanic',1997,194,'English','1998-01-23','UK'),\par
+(916,'Good Will Hunting',1997,126,'English','1998-06-03','UK'),\par
+(917,'Deliverance',1972,109,'English','1982-10-05','UK'),\par
+(918,'Trainspotting',1996,94,'English','1996-02-23','UK'),\par
+(919,'The prestige',2006,130,'English','2006-11-10','UK'),\par
+(920,'Donnie Darko',2001,113,'English',null,'UK'),\par
+(921,'Slumdog Millionaire',2008,120,'English','2009-01-09','UK'),\par
+(922,'Aliens',1986,137,'English','1986-08-29','UK'),\par
+(923,'Beyond the Sea',2004,118,'English','2004-11-26','UK'),\par
+(924,'Avatar',2009,162,'English','2009-12-17','UK'),\par
+(926,'Seven Samurai',1954,207,'Japanese','1954-04-26','JP'),\par
+(927,'Spirited Away',2001,125,'English','2003-09-12','UK'),\par
+(928,'Back to the Future',1985,116,'English','1985-12-04','UK'),\par
+(925,'Braveheart',1995,178,'English','1995-09-08','UK');\par
+\par
+insert into Movie_cast values\par
+(101,901,'John Scottie Ferguson'),\par
+(102,902,'Miss Giddens'),\par
+(103,903,'T.E. Lawrence'),\par
+(104,904,'Michael'),\par
+(105,905,'Antonio Salieri'),\par
+(106,906,'Rick Deckard'),\par
+(107,907,'Alice Harford'),\par
+(108,908,'McManus'),\par
+(110,910,'Eddie Adams'),\par
+(111,911,'Alvy Singer'),\par
+(112,912,'San'),\par
+(113,913,'Andy Dufresne'),\par
+(114,914,'Andy Dufresne'),\par
+(115,915,'Rose DeWitt Bukater'),\par
+(116,916,'Sean Maguire'),\par
+(117,917,'Ed'),\par
+(118,918,'Renton'),\par
+(120,920,'Elizabeth Darko'),\par
+(121,921,'Older Jamal'),\par
+(122,922,'Ripley'),\par
+(114,923,'Bobby Darin'),\par
+(109,909,'J.J. Gittes'),\par
+(119,919,'Alfred Borden');\par
+\par
+insert into Movie_direction values\par
+(201,901),\par
+(202,902),\par
+(203,903),\par
+(204,904),\par
+(205,905),\par
+(206,906),\par
+(207,907),\par
+(208,908),\par
+(209,909),\par
+(210,910),\par
+(211,911),\par
+(212,912),\par
+(213,913),\par
+(214,914),\par
+(215,915),\par
+(216,916),\par
+(217,917),\par
+(218,918),\par
+(219,919),\par
+(220,920),\par
+(218,921),\par
+(215,922),\par
+(221,923);\par
+\par
+insert into Movie_genres values\par
+(922,1001),\par
+(917,1002),\par
+(903,1002),\par
+(912,1003),\par
+(911,1005),\par
+(908,1006),\par
+(913,1006),\par
+(926,1007),\par
+(928,1007),\par
+(918,1007),\par
+(921,1007),\par
+(902,1008),\par
+(923,1009),\par
+(907,1010),\par
+(927,1010),\par
+(901,1010),\par
+(914,1011),\par
+(906,1012),\par
+(904,1013);\par
+\par
+insert into Rating values\par
+(901,9001,8.4,263575),\par
+(902,9002,7.9,20207),\par
+(903,9003,8.3,202778),\par
+(906,9005,8.2,484746),\par
+(924,9006,7.3,null),\par
+(908,9007,8.6,779489),\par
+(909,9008,null,227235),\par
+(910,9009,3,195961),\par
+(911,9010,8.1,203875),\par
+(912,9011,8.4,null),\par
+(914,9013,7,862618),\par
+(915,9004,7.7,830095),\par
+(916,9014,4,642132),\par
+(925,9015,7.7,81328),\par
+(918,9016,null,580301),\par
+(920,9017,8.1,609451),\par
+(921,9018,8,667758),\par
+(922,9019,8.4,511613),\par
+(923,9020,6.7,13091);\par
+\par
+insert into Reviewer values\par
+(9001,'Right Sock'),\par
+(9002,'Jack Malvern'),\par
+(9003,'Flagrant Baronessa'),\par
+(9004,'Alec Shaw'),\par
+(9005,null),\par
+(9006,'Victor Woeltjen'),\par
+(9007,'Simon Wright'),\par
+(9008,'Neal Wruck'),\par
+(9009,'Paul Monks'),\par
+(9010,'Mike Salvati'),\par
+(9011,null),\par
+(9012,'Wesley S. Walker'),\par
+(9013,'Sasha Goldshtein'),\par
+(9014,'Josh Cates'),\par
+(9015,'Krug Stillo'),\par
+(9016,'Scott LeBrun'),\par
+(9017,'Hannah Steele'),\par
+(9018,'Vincent Cadena'),\par
+(9019,'Brandt Sponseller'),\par
+(9020,'Richard Adams');\par
+\par
+# 3\par
+select movie.mov_title \par
+from Movie,Movie_genres,genres \par
+where movie.mov_id=movie_genres.mov_id\par
+and  genres.gen_id=movie_genres.gen_id\par
+and genres.gen_title="Horror";\par
+\par
+# 4\par
+select reviewer.rev_name\par
+from Reviewer, Rating\par
+where rating.rev_id = reviewer.rev_id\par
+and rating.rev_stars>=8\par
+and reviewer.rev_name is not null;\par
+\par
+#5\par
+\par
+select * \par
+from Actor \par
+where act_id in(\par
+select act_id \par
+from movie_cast \par
+where mov_id in (\par
+select mov_id \par
+from movie \par
+where mov_title='Deliverance'\par
+));\par
+\par
+#6\par
+select dir_fname, dir_lname\par
+from  Director\par
+where dir_id in (\par
+select dir_id \par
+from Movie_direction\par
+where mov_id in(\par
+select mov_id \par
+from Movie_cast where role = any (\par
+select role \par
+from Movie_cast \par
+where mov_id in (\par
+select  mov_id \par
+from Movie \par
+where mov_title='Eyes Wide Shut'))));\par
+\par
+#7\par
+\par
+select mov_title, mov_year, mov_dt_rel, dir_fname, dir_lname, act_fname, act_lname \par
+from Movie a, Movie_direction b, Director c, Rating d, Reviewer e, Actor f, Movie_cast g \par
+where a.mov_id=b.mov_id \par
+and b.dir_id=c.dir_id \par
+and a.mov_id=d.mov_id \par
+and d.rev_id=e.rev_id \par
+and a.mov_id=g.mov_id \par
+and g.act_id=f.act_id \par
+and e.rev_name ="Neal Wruck";\par
+}
+ 
