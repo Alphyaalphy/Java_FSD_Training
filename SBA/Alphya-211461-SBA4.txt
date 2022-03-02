@@ -1,0 +1,14 @@
+
+
+SBA4
+Alphya T Baby - 211461
+Create a Student managemeny system using the spring MVC framework?
+
+ 
+Query
+create database studDB;
+use studDB;
+create table Stud(id int auto_increment primary key,name varchar(50),salary float not null,designation varchar(50));
+insert into Stud (id,name,salary,designation) values (id,'sree',25000,'Developer'),
+ (id,'Anu',23000,'HR'), (id,'Maya',20000,'Developer'),(id,'Manohar',30000,'Manager'),(id,'Raj',22000,'Engineer');
+select *from Stud;
